@@ -38,7 +38,14 @@ def draw_map():
 
 @app.route('/chargeData')
 def charge_data():
-    
+    latitude = ''
+    longitude = ''
+    try:
+        latitude = request.args.get('latitude')
+        longitude = request.args.get('longitude')
+    except:
+        return {'code': 400, 'message':'Missing latitude and longitude arguments at the call.'}, 400
+
     auth_object = auth.Auth(secrets['key'], secrets['secret'])
     auth_json = auth_object.auth()
     bearer = auth_json['access_token']
@@ -49,7 +56,7 @@ def charge_data():
     FILE.writerow(['ID', 'LATITUD', 'LONGITUD', 'TAMAÑO', 'PRECIO AL MES', 'RELACION PRECIO TAMAÑO'])
 
     while contador <= int(request.args.get('numPags')):
-        data = ide.get_properties(bearer, 'rent', 39.4747895, -0.37717438, contador)
+        data = ide.get_properties(bearer, 'rent', latitude, longitude, contador)
 
         if data == False:
             return  {'code': 200, 'message': 'All available data charged'}, 200
