@@ -1,4 +1,6 @@
 # SpainRentalHeatMaps
+PREVIEW: http://suarez605.pythonanywhere.com/drawMap
+
 Web application built on Flask wich can recover data from properties at rent via idealista.com API and draw heatmaps with that data.
 
 #Installation
