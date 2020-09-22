@@ -69,7 +69,7 @@ def charge_data():
     
     FILE.close()
 
-    #Limpoiamos lineas en blanco
+    #Limpiamos lineas en blanco
     with open('./Data/data_01.csv') as infile, open('./Data/data_01.csv', 'w') as outfile:
         for line in infile:
             if not line.strip(): continue  # skip the empty line
